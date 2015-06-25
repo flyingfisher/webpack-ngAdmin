@@ -1,0 +1,26 @@
+{
+  "name": "merchant-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "www/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "webpack-dev-server --content-base www",
+    "start": "static www -z -c 7200"
+  },
+  "author": "yuxiang@yuhongtech.com",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^0.15.1",
+    "exports-loader": "^0.6.2",
+    "gulp": "^3.9.0",
+    "gulp-gzip": "^1.1.0",
+    "ng-admin": "git+https://github.com/marmelab/ng-admin.git",
+    "ng-annotate-webpack-plugin": "^0.1.2",
+    "node-libs-browser": "^0.5.2",
+    "style-loader": "^0.12.3",
+    "ts-loader": "^0.4.4",
+    "typescript-loader": "^1.1.3",
+    "webpack": "^1.9.11"
+  }
+}
