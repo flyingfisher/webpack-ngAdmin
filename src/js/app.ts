@@ -1,6 +1,13 @@
 /// <reference path="../../typings/app.d.ts" />
 
-var app = angular.module('myApp', ['ng-admin']);
+angular.module('controllers',[]);
+requireDir("./controller");
+angular.module('services',[]);
+requireDir("./service");
+angular.module('directives',[]);
+requireDir("./directive");
+
+var app = angular.module('app', ['ng-admin','controllers','services','directives']);
 
 app.config((NgAdminConfigurationProvider)=> {
     var nga = NgAdminConfigurationProvider;
@@ -8,10 +15,19 @@ app.config((NgAdminConfigurationProvider)=> {
     var admin = nga.application('My backend')
         .baseApiUrl('http://localhost:3000/');
 
-    var req = require.context("./entity", false, /\.ts$/);
-    req.keys().forEach((it)=>{
-        req(it).configure(nga,admin);
-    });
+    requireDir("./entity",(it)=>{
+        it.configure(nga, admin);
+    })
 
     nga.configure(admin);
 });
+
+function requireDir(path,callback?){
+    var req = require.context(path, false, /\.ts$/);
+    req.keys().forEach((it)=>{
+        if(callback)
+            callback(req(it));
+        else
+            req(it);            
+    });
+}
